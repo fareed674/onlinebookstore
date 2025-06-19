@@ -13,7 +13,13 @@ spec:
         app: onlinebookstore
     spec:
       containers:
-      - name: onlinebookstore
-        image: fareed1/newproject:latest
-        ports:
-        - containerPort: 8080
+        - name: onlinebookstore
+          image: fareed1/newproject:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /onlinebookstore/
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
